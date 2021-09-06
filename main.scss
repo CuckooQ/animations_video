@@ -1,0 +1,51 @@
+body {
+  inline-size: 100vw;
+  block-size: 100vh;
+}
+
+.video {
+  $videoWidth: 1920px;
+  $rateWidth: 16;
+  $rateHeight: 9;
+  $rate: calc(#{$rateHeight} / #{$rateWidth} * 100%);
+
+  block-size: 700px;
+  background-color: #333;
+  position: relative;
+  overflow: hidden;
+
+  .video__area {
+    inline-size: $videoWidth;
+    background-color: orange;
+    position: absolute;
+    inset-inline-start: 50%;
+    margin-inline-start: calc(#{$videoWidth} / -2);
+    inset-block-start: 50%;
+    margin-block-start: calc(#{$videoWidth} * #{$rateHeight} / #{$rateWidth} / -2);
+
+    .player {
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      inline-size: 100%;
+      block-size: 100%;
+    }
+  }
+
+  .video__area::before {
+    content: "";
+    display: block;
+    inline-size: 100%;
+    block-size: 0;
+    padding-block-start: #{$rate};
+  }
+
+  .video__cover {
+    inline-size: 100%;
+    block-size: 100%;
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    background-image: url("./video_cover_pattern.png");
+  }
+}
